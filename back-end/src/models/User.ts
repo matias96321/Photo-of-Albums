@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
-
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm'
+import Album from './Album';
 @Entity('users')
 export default class User {
 
@@ -14,5 +14,11 @@ export default class User {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Album, album => album.user, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({name: 'user_id'})  
+  albums: Album[]
 
 }

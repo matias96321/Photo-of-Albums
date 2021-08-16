@@ -15,7 +15,7 @@ export class createImage1629075314084 implements MigrationInterface {
                 {name: "album_id", type: "integer"},
             ],
             foreignKeys:[
-                {name:"images_albums", columnNames: ['album_id'], referencedTableName: 'album', referencedColumnNames: ['id'], onUpdate:'CASCADE', onDelete: 'CASCADE'}
+                {name:"images_albums", columnNames: ['album_id'], referencedTableName: 'albums', referencedColumnNames: ['id'], onUpdate:'CASCADE', onDelete: 'CASCADE'}
             ]
         }))
     }
