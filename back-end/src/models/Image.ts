@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm'
+import Album from './Album';
 
 
 @Entity('Image')
@@ -22,6 +23,7 @@ export default class Image {
   @Column()
   color: string;
 
-  @Column()
-  album_id: number;
+  @ManyToOne(()=> Album, album => album.image)
+  @JoinColumn({name: 'album_id'})
+  album: Album;
 }
