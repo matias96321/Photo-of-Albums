@@ -1,4 +1,3 @@
-import { throws } from 'assert'
 import {Request, Response} from 'express'
 import {getRepository} from 'typeorm'
 import User from '../models/User'
@@ -12,10 +11,9 @@ export class Login {
         const user = await getRepository(User).findOne({ email: email, password: password})
 
         if (!user) {
-            return response.json({message: "incorrect credentials"})
+            return response.status(401).json({status: 401, responseData : "incorrect credentials"})
         }
-
-        return response.json({user})
+        return response.status(200).json({status: 200, responseData:{id: user.id, name:user.name, email:user.email} })
     }
 
 }
