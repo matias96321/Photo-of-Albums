@@ -1,0 +1,13 @@
+.nav{
+    width: 100vw;
+    background-color:#24022ee0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.nav .logout{
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+}
