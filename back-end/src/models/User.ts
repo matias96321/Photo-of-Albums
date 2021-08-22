@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm'
 import Album from './Album';
-@Entity('users')
+@Entity('Users')
 export default class User {
 
   @PrimaryGeneratedColumn('increment')

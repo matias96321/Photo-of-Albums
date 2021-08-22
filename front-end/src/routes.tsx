@@ -1,7 +1,7 @@
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import Login from './pages/login/login'
 import CreateUser from './pages/user/CreateUser'
-import Albums from './pages/galeryAlbums/galeryAlbums'
+import Albums from './pages/Albums/Albums'
 import Images from './pages/imagen/Images'
 
 export default function Routes(){
@@ -11,7 +11,7 @@ export default function Routes(){
                 <Route path="/" exact component={Login}/>
                 <Route path="/user/create" exact component={CreateUser}/>
                 <Route path="/user/albums" component={Albums}/>
-                <Route path="/user/album/:id/images" component={Images}/>
+                <Route path="/user/album/images" component={Images}/>
             </Switch>
         </BrowserRouter>
     );

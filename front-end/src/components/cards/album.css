@@ -1,0 +1,22 @@
+.card{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+
+    background-color:rgba(238, 221, 226, 0.11);
+    border: 1px solid white;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+.images-preview-card{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 5px;
+}
+
+.title-card, .descrition-card{
+    margin-left: 10px;
+}
+

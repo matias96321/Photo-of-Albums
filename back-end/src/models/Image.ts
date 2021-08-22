@@ -1,8 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm'
 import Album from './Album';
 
-
-@Entity('Image')
+@Entity('Images')
 export default class Image {
 
   @PrimaryGeneratedColumn('increment')

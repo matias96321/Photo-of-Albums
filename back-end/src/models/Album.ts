@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMan
 import Image from './Image';
 import User from './User';
 
-@Entity('Album')
+@Entity('Albums')
 export default class Album {
 
   @PrimaryGeneratedColumn('increment')

@@ -1,7 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class createAlbums1629000378301 implements MigrationInterface {
-
     public async up(queryRunner: QueryRunner): Promise<void> {
         queryRunner.createTable(new Table({
             name: "albums",
@@ -16,7 +15,6 @@ export class createAlbums1629000378301 implements MigrationInterface {
             ]
         }))
     }
-
     public async down(queryRunner: QueryRunner): Promise<void> {
         queryRunner.dropTable('albums');
     }

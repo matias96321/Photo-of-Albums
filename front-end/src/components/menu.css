@@ -1,9 +1,10 @@
 .nav{
     width: 100vw;
-    background-color:#24022ee0;
+    background-color: #830f47b4;
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    color: #fff;
 }
 
 .nav .logout{
