@@ -47,7 +47,7 @@ export default  function AlbumsPage() {
             <div className="container">
                 
                
-                    {
+                    {/* {
                         albums.length === 0
 
                         ?
@@ -64,9 +64,9 @@ export default  function AlbumsPage() {
                         
                         <div className="fist-album">
                             <CgAdd size='100' color="#cb463a"/>
-                            <Link to=""> <div className="album-btn"><AlbumCard album='new'/></div> </Link>
+                            <Link to=""> <div className="album-btn"></div> </Link>
                         </div>
-                    } 
+                    }  */}
                    
             </div>
         </div>
