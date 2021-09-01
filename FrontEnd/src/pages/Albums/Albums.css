@@ -1,5 +1,4 @@
 .page-albums{
-    position: relative;
     width: 100vw;
     height: 100vh;
     background-color: #2c0537;
@@ -12,7 +11,7 @@
 
 .container{
     position: relative;
-    width: 80%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -26,7 +25,35 @@
     margin-top: 50px;
 }
 
+.container .new-album{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
 
+    background-color:rgba(238, 221, 226, 0.11);
+    border: 1px solid white;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.iconAdd{
+    color: #2c0537;
+    height: 250px;
+    width: 200px;
+}
+.iconAdd:hover{
+   color: #cb463a;
+}
+.new-album:hover{
+    background-color:rgba(238, 221, 226, 0.11);
+    border: 1px solid rgb(255, 0, 0);
+    color: #cb463a;
+}
 .page-albums .albums-cards .album-btn{
     background-color: #cb463a;
 

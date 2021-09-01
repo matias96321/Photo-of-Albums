@@ -3,8 +3,11 @@ import { useEffect, useState } from 'react';
 import Menu from '../../components/menu';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
-import { CgAdd } from "react-icons/cg";
+import { IoAddOutline } from "react-icons/io5";
 import './Albums.css'
+import CreateAlbums from './CreateAlbums'
+
+
 interface User{
     id:number;
     email:string;
@@ -22,6 +25,8 @@ export default  function AlbumsPage() {
 
     const [ userData, setUserData ] = useState<User>(Object);
     const [ albums, setAlbums ] = useState<Album[]>([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
     const [newUser, setNewUser] = useState(false)
 
     useEffect(()=>{
@@ -45,29 +50,13 @@ export default  function AlbumsPage() {
         <div className="page-albums">
             <Menu name={userData.name}/>
             <div className="container">
-                
-               
-                    {/* {
-                        albums.length === 0
-
-                        ?
-                        
-                        <div className="albums-cards"> 
-
-                            {albums.map((albumn: Album) => {  return( <AlbumCard album={albumn}/>)})} 
-
-                            <Link to=""> <div className="album-btn">Novo Album</div> </Link>
-                        
-                        </div>
-
-                        : 
-                        
-                        <div className="fist-album">
-                            <CgAdd size='100' color="#cb463a"/>
-                            <Link to=""> <div className="album-btn"></div> </Link>
-                        </div>
-                    }  */}
-                   
+                <div className="albums-cards"> 
+                    {albums.map((albumn: Album) => {  return( <AlbumCard album={albumn}/>)})} 
+                        <button className="new-album" onClick={()=>{setIsModalVisible(true)}}>
+                            <IoAddOutline className="iconAdd" size="110"/>
+                        </button>
+                </div>
+                {isModalVisible === true ? <CreateAlbums/> :null}
             </div>
         </div>
     )
