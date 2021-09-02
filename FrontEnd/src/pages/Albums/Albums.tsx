@@ -25,7 +25,7 @@ export default  function AlbumsPage() {
 
     const [ userData, setUserData ] = useState<User>(Object);
     const [ albums, setAlbums ] = useState<Album[]>([]);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [ isModalVisible, setIsModalVisible ] = useState(false);
 
     const [newUser, setNewUser] = useState(false)
 
@@ -44,7 +44,7 @@ export default  function AlbumsPage() {
             setAlbums(albums.data.responseData);
 
         })()    
-    },[userData.id]);
+    },[isModalVisible]);
     
     return (
         <div className="page-albums">
@@ -56,7 +56,7 @@ export default  function AlbumsPage() {
                             <IoAddOutline className="iconAdd" size="110"/>
                         </button>
                 </div>
-                {isModalVisible === true ? <CreateAlbums/> :null}
+                {isModalVisible === true ? <CreateAlbums ModalVisibleProps={setIsModalVisible}/> :null}
             </div>
         </div>
     )
