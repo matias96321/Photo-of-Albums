@@ -11,6 +11,7 @@ router.get('/api/users/:id', new Users().index);
 router.get('/api/users', new Users().show);
 
 router.get('/api/users/:id/albums', new Albums().Index);
+router.get('/api/users/albums/:id', new Albums().Show);
 router.post('/api/users/albums', new Albums().Create);
 
 router.get('/api/users/albums/:id/images', new Images().Index)

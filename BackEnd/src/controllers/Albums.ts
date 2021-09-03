@@ -13,6 +13,16 @@ export class Albums{
         return response.status(200).json({code: 200, responseData: albums})
     }
 
+    async Show(request: Request, response: Response){
+        
+        const { id } = request.params
+
+        const albums = await getRepository(Album).findOne({where: {id: id}})
+
+        return response.status(200).json({code: 200, responseData: albums})
+
+    }
+
     async Create(request: Request, response: Response){
 
         const { title, description, user_id } = request.body

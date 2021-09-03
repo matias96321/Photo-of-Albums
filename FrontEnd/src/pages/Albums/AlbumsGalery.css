@@ -17,7 +17,8 @@
     flex-direction: column;
     align-items: center;
 }
-.albums-cards , .fist-album{
+.albums-cards{
+    flex-wrap: wrap;
     position: relative;
     width: 90%;
     height: 90%;

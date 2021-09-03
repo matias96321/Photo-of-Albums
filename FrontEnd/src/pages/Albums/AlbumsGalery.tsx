@@ -4,7 +4,7 @@ import Menu from '../../components/menu';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import { IoAddOutline } from "react-icons/io5";
-import './Albums.css'
+import './AlbumsGalery.css'
 import CreateAlbums from './CreateAlbums'
 
 
@@ -26,12 +26,13 @@ export default  function AlbumsPage() {
     const [ userData, setUserData ] = useState<User>(Object);
     const [ albums, setAlbums ] = useState<Album[]>([]);
     const [ isModalVisible, setIsModalVisible ] = useState(false);
-
     const [newUser, setNewUser] = useState(false)
 
     useEffect(()=>{
         (async () => {
+
             const user = localStorage.getItem('@album/usuario')
+            console.log(user);
             
             if(user) 
             setUserData(JSON.parse(user));
@@ -44,14 +45,13 @@ export default  function AlbumsPage() {
             setAlbums(albums.data.responseData);
 
         })()    
-    },[isModalVisible]);
+    },[isModalVisible, userData.id]);
     
     return (
         <div className="page-albums">
-            <Menu name={userData.name}/>
             <div className="container">
                 <div className="albums-cards"> 
-                    {albums.map((albumn: Album) => {  return( <AlbumCard album={albumn}/>)})} 
+                    {albums.map((albumn: Album) => {  return(<Link to={`/user/albums/selected/${albumn.id}`} key={albumn.id}><AlbumCard album={albumn}/></Link>)})} 
                         <button className="new-album" onClick={()=>{setIsModalVisible(true)}}>
                             <IoAddOutline className="iconAdd" size="110"/>
                         </button>

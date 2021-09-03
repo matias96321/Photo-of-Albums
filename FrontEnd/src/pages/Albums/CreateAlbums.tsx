@@ -43,7 +43,6 @@ export default function CreateAlbums({ModalVisibleProps}: Modal) {
 
     console.log(userData);
     
-
     return (
         <div className="container-modal">
 

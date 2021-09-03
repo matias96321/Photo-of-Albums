@@ -1,7 +1,13 @@
 import React from 'react'
 
-export default function CreateUser(){
+interface Album {
+    title: string;
+    description: string;
+}
+
+
+export default function CreateUser(Object: Album){
     return (
-        <div></div>
+        <div>sadsadsadsadsadsadasds</div>
     )
 }
