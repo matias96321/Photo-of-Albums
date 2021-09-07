@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import api from '../../services/api';
+import Menu from '../../components/menu'
 
 interface Album{
     id: number;
@@ -31,6 +32,7 @@ export default function Album() {
     
     return (
         <div>
+            <Menu />
             <div>
                 <div>
                     <h2>{album.title}</h2>

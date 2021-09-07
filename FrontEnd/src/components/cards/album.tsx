@@ -11,9 +11,12 @@ interface Album{
 export default function AlbumCard({album}: Album) {
     return (
         <div className="card">
-            <div className="images-preview-card"><img src="https://via.placeholder.com/190x150" alt="" /></div>
-            <div className="title-card"><h2><strong>{album.title}</strong></h2></div>
-            <div className="descrition-card"><p>{album.description}</p></div>
+            <div className="card-image"></div>
+            <div className="card-text">
+                <h2>fist album</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+            </div>
+                <div className="card-btns"></div>
         </div>
     )
 }

@@ -16,8 +16,6 @@ export default function Routes(){
                 <Route path="/user/albums" component={AlbumsGalery}/>
                 <Route path="/user/album/images" component={Images}/>
             </Switch>
-            <Menu />
-
         </BrowserRouter>
     );
 } 

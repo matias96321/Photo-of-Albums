@@ -49,12 +49,16 @@ export default  function AlbumsPage() {
     
     return (
         <div className="page-albums">
+            <Menu />
             <div className="container">
                 <div className="albums-cards"> 
+
                     {albums.map((albumn: Album) => {  return(<Link to={`/user/albums/selected/${albumn.id}`} key={albumn.id}><AlbumCard album={albumn}/></Link>)})} 
+                        
                         <button className="new-album" onClick={()=>{setIsModalVisible(true)}}>
                             <IoAddOutline className="iconAdd" size="110"/>
                         </button>
+                
                 </div>
                 {isModalVisible === true ? <CreateAlbums ModalVisibleProps={setIsModalVisible}/> :null}
             </div>
