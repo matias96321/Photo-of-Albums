@@ -1,84 +1,37 @@
-.page-albums{
-    width: 100vw;
-    height: 100vh;
-    background-color: #2c0537;
+
+.page-albums h1{
+    cursor: default;
+    text-align: center;
+    font-size: 80px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: rgb(255, 52, 137);
+}
+.cards .album-btn{
     
-    display: flex;
-    flex-direction: column;
+    width: 300px;
+    height: 400px;
+
+    border-radius: 15px;
+
+    display:flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-}
-
-
-
-.container{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.albums-cards{
-    flex-wrap: wrap;
-    position: relative;
-    width: 90%;
-    height: 90%;
-    display: flex;
-    margin-top: 50px;
-}
-
-.container .new-album{
-    margin: 20px;
-    height: 250px;
-    width: 200px;
-
-    background-color:rgba(238, 221, 226, 0.11);
-    border: 1px solid white;
-    border-radius: 5px;
 
     cursor: pointer;
+    box-shadow: 1px solid white;
+    background: rgba(255, 52, 137, 0.486);;
+}
+.cards{
+    position: relative;
+
+   max-width: 980px;
+
+    margin: 0 auto;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.iconAdd{
-    color: #2c0537;
-    height: 250px;
-    width: 200px;
-}
-.iconAdd:hover{
-   color: #cb463a;
-}
-.new-album:hover{
-    background-color:rgba(238, 221, 226, 0.11);
-    border: 1px solid rgb(255, 0, 0);
-    color: #cb463a;
-}
-.page-albums .albums-cards .album-btn{
-    background-color: #cb463a;
-
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    flex-wrap: wrap;
+    gap: 20px;
     
-    width: 120px;
-    height: 40px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 5px;
 }
 
-a:hover{
- color: #fff;
-}
-
-
-.album-btn{
-    margin: 15px;
-}

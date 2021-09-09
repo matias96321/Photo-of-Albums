@@ -49,19 +49,23 @@ export default  function AlbumsPage() {
     
     return (
         <div className="page-albums">
-            <Menu />
-            <div className="container">
-                <div className="albums-cards"> 
+            
+            <div className="menu"><Menu /></div>
+            
+            <h1>Meus Álbuns</h1>
 
-                    {albums.map((albumn: Album) => {  return(<Link to={`/user/albums/selected/${albumn.id}`} key={albumn.id}><AlbumCard album={albumn}/></Link>)})} 
-                        
-                        <button className="new-album" onClick={()=>{setIsModalVisible(true)}}>
-                            <IoAddOutline className="iconAdd" size="110"/>
-                        </button>
+            <div className="cards"> 
+            
+                <div className="album-btn" onClick={()=>{setIsModalVisible(true)}}>
+                    <IoAddOutline size="100"/> 
+                </div>    
+
+                {albums.map((albumn: Album) => {  return(<Link to={`/user/albums/selected/${albumn.id}`} key={albumn.id}><AlbumCard album={albumn}/></Link>)})} 
                 
-                </div>
-                {isModalVisible === true ? <CreateAlbums ModalVisibleProps={setIsModalVisible}/> :null}
             </div>
+
+            {isModalVisible === true ? <CreateAlbums ModalVisibleProps={setIsModalVisible}/> :null}
+            
         </div>
     )
 }
