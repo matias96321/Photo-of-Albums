@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import ModalAdd from '../imagen/ModalAdd';
 import api from '../../services/api';
 import Menu from '../../components/menu'
 import './Album.css'
@@ -13,9 +14,12 @@ interface Album{
 export default function Album() {
 
     const [album, setAlbum] = useState<Album>(Object)
+    const [ isModalVisible, setIsModalVisible ] = useState(false);
+
+
     const { id } = useParams<{id: string}>();
     
-    
+
     useEffect(()=> {
 
         (async () => {
@@ -55,7 +59,7 @@ export default function Album() {
                         <button className="btn-delete">
                             Excluir
                         </button>
-                        <button className="btn-create">
+                        <button className="btn-create" onClick={()=>{setIsModalVisible(true)}}>
                             Adicionar fotos
                         </button>
                         <button className="btn-back">
@@ -63,8 +67,8 @@ export default function Album() {
                         </button>
                     </div>
                 </div>
-            
             </div>
+            {isModalVisible === true ? <ModalAdd ModalVisibleProps={setIsModalVisible}/> :null}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 .container-modal{
     height: 100%;
     width: 100vw;
-
+    
     position: absolute;
     z-index: 10;
     left:0;
@@ -38,24 +38,49 @@
     justify-content: center;
 }
 
+/* Esconde o input */
+input[type='file'] {
+    display: none
+  }
+  
+  /* Aparência que terá o seletor de arquivo */
+  label {
+    background-color: #777777;
+    border-radius: 5px;
+    padding:5px;
+    
+    font-size: small;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.input-Modal-file{
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.input-Modal-file p {
+    color :black;
+}
+
+
 .modal-content-header{
     color: #fff;
     margin-bottom: 10px;
 }
-.input-Modal-content input, textarea{
-    width: 100%;
-    margin-top:10px;
-    outline: none;
-    cursor: pointer;  
-    border:  rgba(255,255,255,0.1);
-    padding: 4px 10px;
-    border-radius: 6px;
-}
 
-.input-modal-text{
+.input-modal-text, .input-Modal-file{
+    
     width: 100%;
     margin-top: 10px;
 }
+
+
 
 .modal .closeBtn{
     position: absolute;
@@ -68,6 +93,17 @@
     border: none;
     background-color: #2c0537;
 }
+
+.input-modal-text input{
+    width: 100%;
+    margin-top:10px;
+    outline: none;
+    cursor: pointer;  
+    border:  rgba(255,255,255,0.1);
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
 
 .closeBtn:hover{
     color: #cb463a;
