@@ -34,7 +34,6 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
     const [album, setAlbum] = useState<Album>(Object)
     const [UrlImage ,setUrlImage] = useState<string>('')
     const [colorPred, setColorPred] = useState<string>('')
-    const [date, setDate] = useState<string>('')
     const [imageFile,setImageimageFile] = useState<File>(Object);
     const [imageData,setImageData] = useState<ImageData>(Object);
 
@@ -43,46 +42,33 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
         if(!event.target.files)
         return;
 
-        const imageSelected = event.target.files[0]
+        const imageSelected = event.target.files[0];
         
-        setImageData({...imageData, date: utils.getDateTime(imageSelected)})
-
         setImageimageFile(imageSelected);
       
-        setUrlImage(URL.createObjectURL(imageSelected))
+        console.log(imageSelected.size / 1000);
+        
+
+        setUrlImage(URL.createObjectURL(imageSelected));
+
+        setImageData({...imageData, date: utils.getDateTime(imageSelected)});
 
     }
 
-    console.log(imageData);
-    
+    useEffect(()=> {
+        setImageData({...imageData, color: colorPred})
+    },[colorPred])
+
 
     useEffect(() => {
         setUserData(utils.getUserStorages())
     },[])
 
-    async function addAlbum(){
-        try {
-
-            await api.post('/api/users/albums',{...album, user_id: userData.id})
-            ModalVisibleProps(false)
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    
 
     return (
         <div className="container-modal">
-            <Color src={UrlImage} crossOrigin="anonymous" format="hex">
-                {({ data, loading }) => {
-                
-                if(!data) return;
-                
-                setImageData({...imageData, color: data});
-                
-                return null;
-                }}
-            </Color>
+            
             <div className="modal">
 
                 <button className="closeBtn" onClick={()=>{ModalVisibleProps(false)}}>Fechar</button>
@@ -100,7 +86,7 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
                     </div>
                     
                     <div className="input-modal-text">
-                        <input type="text" placeholder="Titulo"/>
+                        <input type="text" placeholder="Titulo" onChange={(e)=>{setImageData({...imageData, title: e.target.value})}} required/>
                     </div>
                     
                     <div className="input-modal-text">
@@ -108,15 +94,21 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
                     </div>
 
                     <div className="input-modal-text">
-                        <input type="text" placeholder="Data/Hora de aquisição" value={imageData.date} required/>
+                        <input type="text" placeholder="Data/Hora de aquisição" readOnly onChange={(e)=>{setImageData({...imageData, date: e.target.value})}} value={imageData.date} required/>
                     </div>
-                
+                    <Color src={UrlImage} crossOrigin="anonymous" format="hex" >
+                        {({ data, loading }) => {
+                            if(!data) return loading;
+                            setColorPred(data)
+                            return null;
+                        }}
+                    </Color>
                     <div className="input-modal-text">
                         <input type="text" placeholder="Cor predominante" style={{color: imageData.color}} value={imageData.color} required/>
                     </div>
                 </div>
 
-                <button onClick={addAlbum} className="concludeBtn">Concluir</button>
+                <button className="concludeBtn">Concluir</button>
 
             </div>
 
