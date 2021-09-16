@@ -10,6 +10,7 @@ export class createImage1629075314084 implements MigrationInterface {
                 {name: "date", type: "datetime"},
                 {name: "size", type: "varchar"},
                 {name: "color", type: "varchar"},
+                {name: "firebase_url", type: "varchar"},
                 {name: "album_id", type: "integer"},
             ],
             foreignKeys:[
