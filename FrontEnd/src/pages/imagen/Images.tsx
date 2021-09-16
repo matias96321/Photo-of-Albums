@@ -21,8 +21,6 @@ export default function ImagesPage(){
         setPreviewImage(URL.createObjectURL(imageSelected))
     }
 
-        
-
     return (
       <div className="page-image">
         <div className="dialog">

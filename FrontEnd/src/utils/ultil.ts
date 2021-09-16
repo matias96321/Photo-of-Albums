@@ -29,4 +29,19 @@ export function getDateTime(file: File) {
     // yyyy + '-' + mm + '-' + dd + 'T' + hh + ':' + mi + ':' + ss + '.000000';
 
     return (`${y}-${m}-${d} ${hh}:${mi}:${ss}`)
+
+}
+
+export function formatBytes(bytes: number, decimals: number) {
+
+    if(bytes === 0)
+    {
+        return "0 Byte";
+    }
+    var k = 1024; //Or 1 kilo = 1000
+    var sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB"];
+    var i = Math.floor(Math.log(bytes) / Math.log(k));
+    console.log(i);
+    
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + " " + sizes[i];
 }

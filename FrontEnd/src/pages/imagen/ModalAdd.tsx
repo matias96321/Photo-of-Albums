@@ -1,9 +1,10 @@
 import './ModalAdd.css'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { Link, useHistory  } from 'react-router-dom'
+import { Link, useHistory, useParams  } from 'react-router-dom'
 import api from '../../services/api'
 import  * as utils from '../../utils/ultil'
-import Color, { Palette } from "color-thief-react";
+import Color from "color-thief-react";
+import firebase from '../../firebase/firebase'
 
 interface Modal{
     ModalVisibleProps: any;
@@ -25,8 +26,10 @@ interface ImageData{
     title: string;
     description: string;
     date: string;
-    size: number;
+    size: string;
     color: string;
+    url_firebase: string;
+    album_id: string; 
 }
 
 export default function ModalAdd({ModalVisibleProps}: Modal) {
@@ -37,6 +40,28 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
     const [imageFile,setImageimageFile] = useState<File>(Object);
     const [imageData,setImageData] = useState<ImageData>(Object);
 
+    const { id } = useParams<{id: string}>();
+
+    console.log(id);
+    
+
+    async function saveImage(){
+
+
+        try {
+            
+            const upload =  firebase.storage().ref().child('album-app').child(imageFile.name).put(imageFile)
+            
+            console.log( await upload.snapshot.ref.getDownloadURL());
+            
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+
+    }
+
     function handleImages(event: ChangeEvent<HTMLInputElement>){
 
         if(!event.target.files)
@@ -46,14 +71,18 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
         
         setImageimageFile(imageSelected);
       
-        console.log(imageSelected.size / 1000);
-        
-
         setUrlImage(URL.createObjectURL(imageSelected));
 
-        setImageData({...imageData, date: utils.getDateTime(imageSelected)});
+        setImageData({
+            ...imageData, 
+            date: utils.getDateTime(imageSelected), 
+            size: utils.formatBytes(imageSelected.size, 2), 
+            album_id: id
+        });
 
     }
+
+
 
     useEffect(()=> {
         setImageData({...imageData, color: colorPred})
@@ -63,8 +92,6 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
     useEffect(() => {
         setUserData(utils.getUserStorages())
     },[])
-
-    
 
     return (
         <div className="container-modal">
@@ -108,7 +135,7 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
                     </div>
                 </div>
 
-                <button className="concludeBtn">Concluir</button>
+                <button className="concludeBtn" onClick={saveImage}>Concluir</button>
 
             </div>
 

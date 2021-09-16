@@ -16,10 +16,8 @@ export default function Album() {
     const [album, setAlbum] = useState<Album>(Object)
     const [ isModalVisible, setIsModalVisible ] = useState(false);
 
-
     const { id } = useParams<{id: string}>();
     
-
     useEffect(()=> {
 
         (async () => {
@@ -33,8 +31,7 @@ export default function Album() {
             }
         })()   
     },[])
-    console.log(album.title);
-    
+
     return (
         <div className="page-album-view">
             <Menu />
