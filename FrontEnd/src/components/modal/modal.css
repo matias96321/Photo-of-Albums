@@ -1,0 +1,55 @@
+.modal-container {
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #000000d2;
+    z-index: 999;
+  }
+  
+  .modal-container .modal-dialog {
+    display: block;
+    width: 1000px;
+    height: auto;
+    margin: 3% auto;
+  }
+
+  .modal-container .modal-dialog .modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 15px 0 15px;
+  }
+
+  .modal-container .modal-dialog .modal-header p {
+    cursor: pointer;
+  }
+
+  .modal-container .modal-dialog .modal-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-container .modal-dialog .modal-body img{
+    max-width: 1000px;
+    min-width: 1000px;
+    height: 700px;
+    margin: 10px 0 10px 0;
+  }
+
+  .modal-container .modal-dialog .modal-footer{
+    margin: 0 10px 0 10px;
+  }
+  
+  .modal-container .modal-dialog .modal-footer p{
+    font-size: small;
+  }
+
+
+  .modal-container .btn-delete p{
+    cursor: pointer;
+    display: block;
+    position: fixed;
+    left: 10pc;
+    color: red;
+  }

@@ -5,34 +5,32 @@ import api from '../../services/api'
 import  * as utils from '../../utils/ultil'
 import Color from "color-thief-react";
 import firebase from '../../firebase/firebase'
+import {ModalContext} from '../../contexts/Modal'
 
 interface Modal{
     ModalVisibleProps: any;
 }
-
 interface User{
     id:number;
     email:string;
     name:string;
 }
-
 interface Album{
     title: string;
     description: string;
     user_id: number
 }
-
 interface ImageData{
     title: string;
     description: string;
     date: string;
     size: string;
     color: string;
-    url_firebase: string;
+    firebase_url: string;
     album_id: string; 
 }
 
-export default function ModalAdd({ModalVisibleProps}: Modal) {
+export default function ModalAdd(){
     const [ userData, setUserData ] = useState<User>(Object);
     const [album, setAlbum] = useState<Album>(Object)
     const [UrlImage ,setUrlImage] = useState<string>('')
@@ -42,22 +40,20 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
 
     const { id } = useParams<{id: string}>();
 
-    console.log(id);
-    
+    const {createModal , hideModal, showStatusModal} = React.useContext(ModalContext)
 
     async function saveImage(){
 
-
         try {
+
+            const upload = await firebase.storage().ref().child('album-app').child(`${Date.now()}-${imageFile.name}`).put(imageFile)
             
-            const upload =  firebase.storage().ref().child('album-app').child(imageFile.name).put(imageFile)
-            
-            console.log( await upload.snapshot.ref.getDownloadURL());
-            
+            const downloadURL = await upload.ref.getDownloadURL()
+
+            await api.post('/api/users/albums/images', {...imageData, firebase_url: downloadURL})
             
         } catch (error) {
             console.log(error);
-            
         }
 
     }
@@ -82,44 +78,33 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
 
     }
 
-
-
     useEffect(()=> {
         setImageData({...imageData, color: colorPred})
     },[colorPred])
 
-
     useEffect(() => {
         setUserData(utils.getUserStorages())
-    },[])
+    },[showStatusModal().typeModal])
 
     return (
         <div className="container-modal">
-            
             <div className="modal">
-
-                <button className="closeBtn" onClick={()=>{ModalVisibleProps(false)}}>Fechar</button>
-                
+                <button className="closeBtn" onClick={()=>{hideModal()}}>Fechar</button>
                 <div className="modal-content">
-
                     <div className="modal-content-header">
                         <h3>Adicionar nova foto</h3>
                     </div>
-                    
                     <div className="input-Modal-file">
                         <p>{imageFile.name}</p>
                         <label htmlFor='selecao-arquivo' >Selecionar um arquivo </label>
                         <input type="file" id="selecao-arquivo" onChange={handleImages}/>
                     </div>
-                    
                     <div className="input-modal-text">
                         <input type="text" placeholder="Titulo" onChange={(e)=>{setImageData({...imageData, title: e.target.value})}} required/>
                     </div>
-                    
-                    <div className="input-modal-text">
+                        <div className="input-modal-text">
                         <textarea id="description" rows={10} cols={30} placeholder="Descrição" onChange={(e)=>{setImageData({...imageData, description: e.target.value})}} required></textarea>
                     </div>
-
                     <div className="input-modal-text">
                         <input type="text" placeholder="Data/Hora de aquisição" readOnly onChange={(e)=>{setImageData({...imageData, date: e.target.value})}} value={imageData.date} required/>
                     </div>
@@ -134,11 +119,8 @@ export default function ModalAdd({ModalVisibleProps}: Modal) {
                         <input type="text" placeholder="Cor predominante" style={{color: imageData.color}} value={imageData.color} required/>
                     </div>
                 </div>
-
                 <button className="concludeBtn" onClick={saveImage}>Concluir</button>
-
             </div>
-
         </div>
     )
 }

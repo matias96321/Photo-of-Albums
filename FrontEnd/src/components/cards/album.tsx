@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './album.css'
 interface Album{
     album:{
@@ -13,8 +12,8 @@ export default function AlbumCard({album}: Album) {
         <div className="card">
             <div className="card-image"></div>
             <div className="card-text">
-                <h2>fist album</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                <h2>{album.title}</h2>
+                <p>{album.description}</p>
             </div>
                 <div className="card-btns"></div>
         </div>

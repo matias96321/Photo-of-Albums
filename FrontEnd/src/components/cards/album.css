@@ -1,10 +1,10 @@
 .card{
-    display: grid;
-    grid-template-columns: 300px;
-    grid-template-rows: 240px 110px 50px;
-    grid-template-areas: "image" "text" "btn";
+    display: flex;
+    flex-direction: column;
 
-    font-family: roboto;
+    margin: 10px;
+
+    width: 250px;
     border-radius: 18px;
     background: #fff;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
@@ -15,17 +15,25 @@
 
 .card-image{
     background: url("https://static01.nyt.com/images/2020/07/17/business/00virus-cities1/00virus-cities1-mediumSquareAt3X.jpg");
-    grid-area: image;
+    height: 250px;
+    width: 100%;
     text-align: center;
     border-top-left-radius: 15px;
     border-top-right-radius:15px;
     background-size: cover;
+    
+}
+.card-image img{
+    max-width: 100%;
+    display: block;
 }
 
 .card-text{
-    grid-area: text;
+    max-width: 100%;
+    display: block; 
+    height: 100px;
     margin: 25px;
-    color: rgb(255, 52, 137);
+    color: #00DCF3;
 }
 
 .card-text p {

@@ -17,7 +17,7 @@ router.post('/api/users/albums', new Albums().Create);
 router.get('/api/users/albums/:id/images', new Images().Index)
 router.get('/api/users/albums/:album_ai/images/:image_id', new Images().show)
 router.post('/api/users/albums/images', new Images().Create)
-
+router.delete('/api/users/albums/images/:image_id',new Images().Destroy)
 
 router.post('/api/login', new Login().login)
 

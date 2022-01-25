@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useHistory  } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../contexts/auth';
 import api from '../../services/api'
 import  * as utils from '../../utils/ultil'
 import './CreateAlbums.css'
@@ -8,32 +8,24 @@ interface Modal{
     ModalVisibleProps: any;
 }
 
-interface User{
-    id:number;
-    email:string;
-    name:string;
-}
-
 interface Album{
     title: string;
     description: string;
     user_id: number
 }
 
-
-
 export default function CreateAlbums({ModalVisibleProps}: Modal) {
-    const [ userData, setUserData ] = useState<User>(Object);
+
     const [album, setAlbum] = useState<Album>(Object)
 
-    useEffect(() => {
-        setUserData(utils.getUserStorages())
-    },[])
-
+    const { user } = useContext(AuthContext)
+ 
+    console.log(user);
+    
     async function addAlbum(){
         try {
 
-            await api.post('/api/users/albums',{...album, user_id: userData.id})
+            await api.post('/api/users/albums',{...album, user_id: user.id})
             ModalVisibleProps(false)
 
         } catch (error) {

@@ -8,10 +8,7 @@
 
 .content-album{
 
-    height:  80%;
-    width: 85%;
-    background-color: #fff;
-    
+    width: 60%;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
@@ -20,13 +17,12 @@
 .header{
     display: flex;
     justify-content: space-between;
-    color:deeppink;
+    color:#A5A8AE;
 }
 
 .fotos-detals{
     border-bottom: 2px solid grey;
     border-top: 2px solid grey;
-    height: 75%;
 }
 
 .info{
@@ -38,12 +34,16 @@
 }
 
 .views-options{
-    width: 400px;
-    display: flex;
-    justify-content: center;
+width: 400px;
+display: flex;
+    justify-content: flex-end;
     align-items: flex-end;
     
 }
+.views-options a{
+    color: #02DBF4;
+}
+
 .page-album-view .album{
     display: flex;
     justify-content: center;
@@ -59,11 +59,11 @@
 }
 
 .album-btns button {
-    height: 40px;
     width: 200px;
     border-radius: 10px;
-
-    color: #fff;
+    color: #02DBF4;
+    height: 35px;
+    background-color:#20232A;
 }
 
 .album-btns .btn-delete{
@@ -78,4 +78,27 @@
 
 .album-btns .btn-back{
     background: darkslateblue;
+}
+
+.fotos-miniature .fotos-group .image-view img{
+    width: 250px;
+    height: 150px;
+    margin: 10px 20px 0 0;
+    cursor: pointer;
+}
+
+.fotos-miniature{
+    height: 500px;
+    display: flex;
+    justify-content: start;
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+    margin: 20px;
+}
+
+.fotos-miniature .fotos-group{
+    display: flex;
+    flex-wrap: wrap;   
+    overflow: auto; 
+    height: 400px;
 }

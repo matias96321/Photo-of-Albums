@@ -39,12 +39,12 @@
 }
 
 /* Esconde o input */
-input[type='file'] {
+.input-Modal-file input[type='file'] {
     display: none
   }
   
   /* Aparência que terá o seletor de arquivo */
-  label {
+  .input-Modal-file  label {
     background-color: #777777;
     border-radius: 5px;
     padding:5px;
@@ -65,6 +65,10 @@ input[type='file'] {
 }
 
 .input-Modal-file p {
+    width: 260px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color :black;
 }
 
@@ -75,7 +79,6 @@ input[type='file'] {
 }
 
 .input-modal-text, .input-Modal-file{
-    
     width: 100%;
     margin-top: 10px;
 }

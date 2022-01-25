@@ -11,11 +11,12 @@ export class Images{
         const result = await getRepository(Image).find({where:{album: id}})
 
         if(!result)
-        return response.status(200).json({code: 200, responseData: null})
+        return response.status(400).json({code: 400, responseData: null})
 
         return response.status(200).json({code: 200, responseData: result})
 
     }
+
     async show(request: Request, response: Response){
         
         const { album_ai , image_id } = request.params
@@ -31,9 +32,9 @@ export class Images{
 
     async Create(request: Request, response:Response){
 
-        const { title, description, date, size, color, album_id } = request.body
+        const { title, description, date, size, color, album_id, firebase_url } = request.body
 
-        const imageCreate = await getRepository(Image).create({title, description, date, size, color, album: album_id})
+        const imageCreate = await getRepository(Image).create({title, description, date, size, color, firebase_url, album: album_id})
 
         const result = await getRepository(Image).save(imageCreate)
 
@@ -43,4 +44,21 @@ export class Images{
         return response.status(200).json({code: 200, responseData: result})
 
     }
+
+    async Destroy(request: Request, response: Response){
+        
+        const { image_id } = request.params
+        
+        const id = parseInt(image_id)
+
+        const result = await getRepository(Image).delete({id: id})
+
+        if(!result)
+        return response.status(200).json({code: 200, responseData: null})
+
+        return response.status(200).json({code: 200, responseData: result})
+        
+    }
+
+    
 }

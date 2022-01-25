@@ -22,7 +22,11 @@ export default class Image {
   @Column()
   color: string;
 
-  @ManyToOne(()=> Album, album => album.image)
+  @Column()
+  firebase_url: string;
+
+  @ManyToOne(()=> Album, album => album.image,{eager: true})
   @JoinColumn({name: 'album_id'})
   album: Album;
+
 }
