@@ -22,4 +22,3 @@ this photo album is part of a personal project that aims to practice react and n
 - TypeOmr
 - Sqlite
 - Migrations
-- 
