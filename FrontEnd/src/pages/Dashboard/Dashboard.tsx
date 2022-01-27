@@ -27,6 +27,12 @@ export default  function Dashboard() {
 
     const { user } = useContext(AuthContext)
 
+    const createAlbum = () => {
+        console.log("entrou");
+        
+        return <CreateAlbums />
+    }
+
     useEffect(()=>{
         (async () => {
             const albums = await api.get(`/api/users/${user.id}/albums`);
@@ -36,15 +42,18 @@ export default  function Dashboard() {
     
     return (
         <div className="container">
+            <Menu />
             <div className="heading">
                 <h3><span>Meus Albums</span></h3>
             </div>
             <div className="album-galery">
                 {albums.map(item => {
-                    return <AlbumCard album={item} key={item.id}/>
+                    return <div  key={item.id}><AlbumCard album={item}  /></div>
                 })}
             </div>
-
+            <div>
+                <CreateAlbums />
+            </div>
         </div>
     )
 }
