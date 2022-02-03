@@ -24,7 +24,7 @@ const StyledOverlay = styled(DialogPrimitive.Overlay, {
 });
 
 const StyledContent = styled(DialogPrimitive.Content, {
-  backgroundColor: 'white',
+  backgroundColor: '#3f434d',
   borderRadius: 6,
   boxShadow: 'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
   position: 'fixed',
@@ -53,7 +53,7 @@ function Content({ children, ...props }: any) {
 const StyledTitle = styled(DialogPrimitive.Title, {
   margin: 0,
   fontWeight: 900,
-  color: mauve.mauve12,
+  color: '#00DCF3',
   fontSize: 17,
 });
 
@@ -91,17 +91,17 @@ const Button = styled('button', {
   variants: {
     variant: {
       violet: {
-        backgroundColor: 'white',
+        backgroundColor: '#fff',
         color: violet.violet11,
         boxShadow: `0 2px 10px ${blackA.blackA7}`,
         '&:hover': { backgroundColor: mauve.mauve3 },
         '&:focus': { boxShadow: `0 0 0 2px black` },
       },
       green: {
-        backgroundColor: green.green4,
-        color: green.green11,
-        '&:hover': { backgroundColor: green.green5 },
-        '&:focus': { boxShadow: `0 0 0 2px ${green.green7}` },
+        backgroundColor: '#00DCF3',
+        color: 'white',
+        '&:hover': { backgroundColor: '#fff', color: ' #00DCF3'},
+        '&:focus': { boxShadow: `0 0 0 2px #00DCF3` },
       },
     },
   },
@@ -134,12 +134,13 @@ const Fieldset = styled('fieldset', {
   display: 'flex',
   gap: 20,
   alignItems: 'baseline',
+  justifyContent: 'flex-start',
   marginBottom: 15,
 });
 
 const Label = styled('label', {
   fontSize: 15,
-  color: violet.violet11,
+  color: '',
   width: 90,
   textAlign: 'right',
 });
@@ -155,14 +156,19 @@ const Input = styled('input', {
   padding: '0 10px',
   fontSize: 15,
   lineHeight: 1,
-  color: violet.violet11,
-  boxShadow: `0 0 0  1px black`,
+  color: 'grey',
+  boxShadow: ` 0 0 0 1px #ffff`,
   height: 35,
 
   '&:focus': { boxShadow: `0 0 0 1px #00DCF3` },
 });
 
-const Textarea = styled('textarea' , {
+const Textarea = styled('textarea',  {
+  all: 'unset',
+  wordWrap: 'break-word',
+  width: '100%',
+  rows: '5',
+  cols: '33',
   flex: '1',
   display: 'inline-flex',
   alignItems: 'center',
@@ -171,10 +177,11 @@ const Textarea = styled('textarea' , {
   padding: '0 10px',
   fontSize: 15,
   lineHeight: 2,
-  color: violet.violet11,
-  height: 100,
-
-  '&:focus': { boxShadow: `4px #00DCF3` },
+  boxShadow: `0 0 0 1px #ffff`,
+  color: 'grey',
+  minHeight: 200,
+  maxHeight: 200,
+  '&:focus': { boxShadow: `0 0 0 1px #00DCF3` },
 });
 
 const DialogDemo = () => (
@@ -199,7 +206,7 @@ const DialogDemo = () => (
 
       <Fieldset >
         <Label htmlFor="descricao">Descrição</Label>
-        <Textarea rows={5} cols={33} id="descricao"  placeholder='Fotos de gatos, fotos das férias...' >aaaa</Textarea>
+        <Textarea  id="descricao"  placeholder='Fotos de gatos, fotos das férias...' />
       </Fieldset>
       
       <Flex css={{ marginTop: 25, justifyContent: 'flex-end' }}>
