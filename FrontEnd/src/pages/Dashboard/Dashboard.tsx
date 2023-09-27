@@ -5,7 +5,7 @@ import api from '../../services/api';
 import './Dashboard.css'
 import CreateAlbums from './CreateAlbums'
 import { AuthContext } from '../../contexts/auth';
-
+import albumimage from '../../assets/album-ilustrator.jpg'
 
 interface Album {
     id:number;
@@ -33,20 +33,41 @@ export default  function Dashboard() {
         })()    
     },[user]);
     
+
+    const openAlbum = (id: number) => {
+        
+    }
+
     return (
         <div className="container">
             <Menu />
             <div className="heading">
-                <h3><span>Meus Albums</span></h3>
+                <div className='head-container'>
+                    <div className='head-text'>
+                        <h1>Meus Albums</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis deleniti debitis quidem nisi obcaecati dolor perspiciatis ipsum eos earum. Doloribus nesciunt odio dolores porro quasi, harum exercitationem est sequi mollitia.</p>
+                        <button>Novo</button>
+                    </div>
+                    <div className='header-image'>  
+                        <img src={albumimage} alt="iamge" />
+                    </div>
+                </div>
             </div>
-            <div className="album-galery">
-                {albums.map(item => {
-                    return <div  key={item.id}><AlbumCard album={item}  /></div>
-                })}
-            </div>
-            <div>
-                <CreateAlbums />
-            </div>
+            <main>
+                <div className='main-container'>
+                    <div className='main-cards'>
+                        {albums.map(item => {
+                            return <div onClick={() => openAlbum(item.id)} key={item.id}><AlbumCard album={item} /></div>
+                        })}
+                    </div>
+                </div>
+                {/* <div className="album-galery" >
+                    
+                </div>
+                <div>
+                    <CreateAlbums />
+                </div> */}
+            </main>
         </div>
     )
 }

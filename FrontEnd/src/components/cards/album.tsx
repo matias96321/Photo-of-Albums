@@ -12,7 +12,7 @@ export default function AlbumCard({album}: Album) {
         <div className="card">
             <div className="card-image"></div>
             <div className="card-text">
-                <h2>{album.title}</h2>
+                <h3>{album.title}</h3>
                 <p>{album.description}</p>
             </div>
                 <div className="card-btns"></div>

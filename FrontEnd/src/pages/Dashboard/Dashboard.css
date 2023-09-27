@@ -6,11 +6,76 @@
 }
 
 .container .heading{
-    width: 50%;
-    padding-bottom: 50px;
-    margin: 50px auto 50px; 
+    height: 100%;
+    padding-bottom: 120px;
+    /* margin: 50px auto 50px;  */
+    background-color: #FFFFFF;
+
 }
 
+.container .heading .head-container .head-text {
+    width: 390px;
+    padding-top: 135px;
+    color: #1B2E35;
+}
+
+.head-text h1{
+    font-family: 'Merriweather', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 47px;
+}
+
+.head-text p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 32px;
+    color: #385A64;
+    margin-top: 18px;
+}
+
+.head-text button {
+    width: 155px;
+    height: 50px;
+    margin-top: 45px;
+    background: #FF4F5A;
+    box-shadow: 0px 5px 5px rgba(23, 23, 23, 0.1);
+    border-radius: 5px;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .4s ease;
+    color: #FFFFFF;
+
+}
+
+.head-text button:hover {
+    opacity: 0.9;
+}
+
+
+.container .heading .head-container {
+    max-width: 1240px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.container .heading .head-container .header-image {
+    margin-top: 87px;
+}
+
+
+
+.container .heading .head-container .header-image img {
+    width: 100%;
+    height: 500px;
+}
 .container .heading h3{
     text-align: center;
     font-size: 3em;
@@ -18,6 +83,20 @@
     border-bottom: 3px solid #00DCF3;
     padding-bottom: 20px;
 } 
+
+
+.main-container{
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.main-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 340px);
+    justify-content: space-between;
+    margin-top: 150px;
+}
+
 
 .container .album-galery{
 
