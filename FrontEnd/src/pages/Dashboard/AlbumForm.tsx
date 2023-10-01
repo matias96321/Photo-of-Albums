@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import './AlbumForm.css';
 import image from '../../assets/Photo album-pana.svg'
 import { FiPlus } from 'react-icons/fi'
+import  ImageForm  from './ImageForm'
 
 interface Album {
   title: string;
@@ -10,6 +11,17 @@ interface Album {
 
 const AlbumForm: React.FC = () => {
   const [albums, setAlbums] = useState<Album[]>([]);
+  const [modalOpen, setModalOpen] = useState(false);
+
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+      setModalOpen(false);
+  };
+
 
   const handlerSubmitForm = (event: FormEvent) => { 
     event.preventDefault();
@@ -24,10 +36,10 @@ const AlbumForm: React.FC = () => {
   return (
     <div className='page-create-album'>
       <main>
+        <div className='container-album'>
         <form onSubmit={handlerSubmitForm} className="create-album-form">
           <fieldset>
           <legend>Novo Album</legend>
-          <img className='image-form-represent' src={image}alt="album-represent" />
           
           <div className="input-block">
             <label htmlFor="name">Titulo</label>
@@ -39,17 +51,12 @@ const AlbumForm: React.FC = () => {
             <textarea id="name" maxLength={300}/>
           </div>
           <div className="input-block">
-            
             <label htmlFor="images">Fotos</label>
-            
             <div className="images-container">
-                
-              <label htmlFor="images[]" className="new-image">
+              <label onClick={openModal} htmlFor="images[]"  className="new-image">
                 <FiPlus size={24} color="#15b6d6" />
               </label>
-
             </div>
-            <input multiple onChange={handlerImagesSelect} type="file" name="images[]" id="images[]"/>
           </div>
           {/* <div className="input-block">
               <label htmlFor="images">Fotos</label>
@@ -66,14 +73,16 @@ const AlbumForm: React.FC = () => {
             <input multiple onChange={handlerImagesSelect} type="file" name="images[]" id="images[]"/>
           </div> */}
 
-
-
           </fieldset>
           <button className="confirm-button" type="submit">
             Confirmar
           </button>
         </form>
+        <img className='image-form-represent' src={image}alt="album-represent" />
+
+        </div>
       </main>
+      {modalOpen && <ImageForm />}
     </div>
   );
 };
