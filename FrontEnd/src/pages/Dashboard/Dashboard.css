@@ -5,6 +5,13 @@
 
 }
 
+.add-album-component {
+    position: relative;
+    z-index: 1;
+    left:0;
+    top:0;
+}
+
 .container .heading{
     height: 100%;
     padding-bottom: 120px;

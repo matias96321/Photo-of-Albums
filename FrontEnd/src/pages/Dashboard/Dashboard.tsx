@@ -3,9 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import Menu from '../../components/menu';
 import api from '../../services/api';
 import './Dashboard.css'
-import CreateAlbums from './CreateAlbums'
+import AddAlbum from './AlbumForm'
 import { AuthContext } from '../../contexts/auth';
-import albumimage from '../../assets/album-ilustrator.jpg'
+import albumimage from '../../assets/Collecting-pana.svg'
 
 interface Album {
     id:number;
@@ -18,13 +18,9 @@ export default  function Dashboard() {
 
     const [ albums, setAlbums ] = useState<Album[]>([]);
     const [ isModalVisible, setIsModalVisible ] = useState(false);
-
+    const [modalOpen, setModalOpen] = useState(false);
     const { user } = useContext(AuthContext)
 
-    const createAlbum = () => {
-        console.log("entrou");
-        return <CreateAlbums />
-    }
 
     useEffect(()=>{
         (async () => {
@@ -38,6 +34,14 @@ export default  function Dashboard() {
         
     }
 
+    const openModal = () => {
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+    
     return (
         <div className="container">
             <Menu />
@@ -46,7 +50,7 @@ export default  function Dashboard() {
                     <div className='head-text'>
                         <h1>Meus Albums</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis deleniti debitis quidem nisi obcaecati dolor perspiciatis ipsum eos earum. Doloribus nesciunt odio dolores porro quasi, harum exercitationem est sequi mollitia.</p>
-                        <button>Novo</button>
+                        <button onClick={openModal} >Novo</button>
                     </div>
                     <div className='header-image'>  
                         <img src={albumimage} alt="iamge" />
@@ -61,12 +65,7 @@ export default  function Dashboard() {
                         })}
                     </div>
                 </div>
-                {/* <div className="album-galery" >
-                    
-                </div>
-                <div>
-                    <CreateAlbums />
-                </div> */}
+                 {modalOpen && <AddAlbum OncloseModal={closeModal}/>}
             </main>
         </div>
     )
