@@ -4,23 +4,61 @@ import imageUpload from '../../assets/Image upload-pana.svg'
 import { RiImageAddFill } from "react-icons/ri";
 import { BsUpload } from "react-icons/bs";
 import { FiTrash2 } from "react-icons/fi";
+import { RiArrowGoBackLine } from "react-icons/ri";
+
+interface ImageFormData {
+    title: string;
+    description: string;
+    image: File
+}
 
 
-const ImageForm: React.FC = () => {
+interface ImageFormProps {
+    statusModal:  React.Dispatch<React.SetStateAction<boolean>>
+    onImageFormData: ImageFormData[]
+    onSetImageFormData: React.Dispatch<React.SetStateAction<Array<ImageFormData>>>
+}
+
+const ImageForm: React.FC<ImageFormProps> = ({
+    onSetImageFormData,
+    onImageFormData,
+    statusModal
+}: ImageFormProps) => {
 
   const [image,setImage] = useState<File>()
   const [SelectImagePreview,setSelectImagePreview] = useState<string>()
+  const [title,setTitle] = useState('')
+  const [description,setDescription] = useState('')
 
   const handlerSubmitForm = (event: FormEvent) => {
+    
+    event.preventDefault();
 
+    if(!image){return}
+    
+    const imageData = new FormData()
+
+    imageData.append('title', title.toString())
+    imageData.append('description', description.toString())
+    imageData.append('image', image.toString())
+
+    onSetImageFormData([...onImageFormData, {title, description, image}])
+
+    statusModal(false)
   }
+
+  const onClose = (event: FormEvent) =>{
+    event.preventDefault();
+    statusModal(false)
+  }
+
   const handlerImagesSelect = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {return}
 
     const SelectedImage =  event.target.files[0]
 
     setImage(SelectedImage)
-    
+
     let image = URL.createObjectURL(SelectedImage)
 
     setSelectImagePreview(image)
@@ -36,23 +74,22 @@ const ImageForm: React.FC = () => {
     <div className='page-create-image'>
         <main>
             <div className='form-container'>
-                
                 <form onSubmit={handlerSubmitForm} className="create-image-form">
-                    
                     <fieldset>
-                    <div className='image-form-represent'>
+                    {/* <div className='image-form-represent'>
                         <img src={imageUpload} alt="" />
-                    </div>
-                    <legend>Adicionar Imagem</legend>
-                    
+                    </div> */}
+                    <legend>
+                        Adicionar Imagem
+                        <button onClick={onClose} className="close-button"><RiArrowGoBackLine /></button>
+                    </legend>
                     <div className="input-block">
                         <label htmlFor="name">Titulo</label>
-                        <input id="name"/>
+                        <input id="name" onChange={(e) => setTitle(e.target.value)}/>
                     </div>
-                    
                     <div className="input-block">
                         <label htmlFor="about">Descrição da imagem<span>Máximo de 300 caracteres</span></label>
-                        <textarea id="name" maxLength={300}/>
+                        <textarea id="name" maxLength={300} onChange={(e) => setDescription(e.target.value)}/>
                     </div>
                     <div className="input-block">
                         <label htmlFor="images">Foto</label>
@@ -65,14 +102,14 @@ const ImageForm: React.FC = () => {
                                     <FiTrash2 size={24} color="#8FA7B3" />
                                 </button>
                                 <button className="button-upload-image">
-                                    <BsUpload  size={24} color="#8FA7B3"/>
+                                    <label htmlFor="images[]"><BsUpload  size={24} color="#8FA7B3"/></label>
                                 </button>
                             </div>
                         </div>
                         <input type="file" onChange={handlerImagesSelect} name="images[]" id="images[]"/>
                     </div>
                     <button className="confirm-button" type="submit">
-                        Confirmar
+                        Adicionar Imagem
                     </button>
                     </fieldset>
                 </form>
