@@ -12,7 +12,6 @@ interface ImageFormData {
     image: File
 }
 
-
 interface ImageFormProps {
     statusModal:  React.Dispatch<React.SetStateAction<boolean>>
     onImageFormData: ImageFormData[]
@@ -63,7 +62,6 @@ const ImageForm: React.FC<ImageFormProps> = ({
 
     setSelectImagePreview(image)
 
-    console.log(SelectedImage);
   }
   const deleteImage = (event: FormEvent) => {
     event.preventDefault();
@@ -94,8 +92,13 @@ const ImageForm: React.FC<ImageFormProps> = ({
                     <div className="input-block">
                         <label htmlFor="images">Foto</label>
                         <div className="images-container">
-                            <label htmlFor="images[]" className="new-image">
-                                {SelectImagePreview? <img src={SelectImagePreview} alt="" /> :<RiImageAddFill size={250} color="#8FA7B3" />}
+                            <label htmlFor={image ? '' : "images[]"} className="new-image">
+                                {SelectImagePreview ? <img src={SelectImagePreview} alt=""/> :
+                                <>
+                                    <RiImageAddFill size={150} color="#8FA7B3" />
+                                    <span>Click Aqui Para Adicinar Nova Imagem</span>
+                                </>
+                                }
                             </label>
                             <div className='buttons-image'>
                                 <button onClick={deleteImage} className="button-upload-image">

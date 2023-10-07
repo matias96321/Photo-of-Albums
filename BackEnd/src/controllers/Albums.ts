@@ -27,8 +27,6 @@ export class Albums{
 
         const { title, description, user_id } = request.body
 
-        
-
         const albumCreate = getRepository(Album).create({ title, description, user: user_id })
         
         const result = await getRepository(Album).save(albumCreate)

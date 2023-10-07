@@ -76,6 +76,8 @@ form.create-image-form .input-block .new-image {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  
 }
 
 form.create-image-form  .buttons-image label {
