@@ -65,7 +65,7 @@ export default  function Dashboard() {
                         })}
                     </div>
                 </div>
-                 {modalOpen && <AddAlbum OncloseModal={closeModal}/>}
+                {modalOpen && <AddAlbum OncloseModal={closeModal}/>}
             </main>
         </div>
     )
